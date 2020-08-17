@@ -1,16 +1,17 @@
 <?php
 return [
+	//Seri 8/12/2020 - this class can replace activate.php
+	//'bootstrap' => \Tidypics\Bootstrap::class,
 	'views' => [
 		'default' => [
+			'tidypics/js/plupload/plupload.full.min.js' => __DIR__ . '/vendors/plupload/js/plupload.full.min.js',
+			'tidypics/js/plupload/jquery.ui.plupload/jquery.ui.plupload.min.js' => __DIR__ . '/vendors/plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js',
+			'tidypics/css/plupload/css/jquery.ui.plupload.css' => __DIR__ . '/vendors/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css',
+			'tidypics/css/jqueryui-theme.css' => 'vendor/bower-asset/jquery-ui/themes/smoothness/jquery-ui.min.css',
 			'tidypics/' => __DIR__ . '/graphics',
-			"tidypics/js/plupload/plupload.full.min.js" => __DIR__ . "/vendors/plupload/js/plupload.full.min.js",
-			"tidypics/js/plupload/" => __DIR__ . "/vendors/plupload/js",
-			"tidypics/js/plupload/jquery.ui.plupload/jquery.ui.plupload.min.js" => __DIR__ . "/vendors/plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js",
-			"tidypics/js/plupload/i18n/" => __DIR__ . "/vendors/plupload/js/i18n",
-			"tidypics/css/plupload/css/jquery.ui.plupload.css" => __DIR__ . "/vendors/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css",
-			"tidypics/css/plupload/img/" => __DIR__ . "/vendors/plupload/js/jquery.ui.plupload/img",
-
-			"tidypics/css/jqueryui-theme.css" => "/vendor/bower-asset/jquery-ui/themes/smoothness/jquery-ui.min.css",
+			'tidypics/js/plupload/' => __DIR__ . '/vendors/plupload/js',
+			'tidypics/js/plupload/i18n/' => __DIR__ . '/vendors/plupload/js/i18n',
+			'tidypics/css/plupload/img/' => __DIR__ . '/vendors/plupload/js/jquery.ui.plupload/img',
 		],
 	],
 	'entities' => [
@@ -55,12 +56,19 @@ return [
 		'photos/admin/imtest' => ['access' => 'admin'],
 	],
 	'routes' => [
+		/*
+		//Seri 6/11/2020 - dont know why we need this
 		'collection:object:photos:siteimagesall_guid' => [
 			'path' => '/photos/siteimagesall/{guid}',
 			'resource' => 'tidypics/lists/siteimagesowner',
 		],
+		*/
 		'collection:object:photos:siteimagesall' => [
 			'path' => '/photos/siteimagesall',
+			'resource' => 'tidypics/lists/siteimagesall',
+		],
+		'collection:object:photos:siteimagesowner' => [
+			'path' => '/photos/siteimagesowner',
 			'resource' => 'tidypics/lists/siteimagesowner',
 		],
 		'collection:object:photos:siteimagesgroup' => [
@@ -75,20 +83,24 @@ return [
 			'path' => '/photos/all',
 			'resource' => 'tidypics/photos/all',
 		],
+		/*
+		//Seri 6/11/2020 - duplicate to /photos/all
 		'collection:object:photos:world' => [
 			'path' => '/photos/world',
 			'resource' => 'tidypics/photos/all',
 		],
+		//Seri 6/11/2020 - why do we need it?
 		'collection:object:photos:owned' => [
 			'path' => '/photos/owned',
 			'resource' => 'tidypics/photos/owner',
 		],
+		*/
 		'collection:object:photos:group' => [
 			'path' => '/photos/group/{guid}/all',
 			'resource' => 'tidypics/photos/owner',
 		],
 		'collection:object:photos:owner' => [
-			'path' => '/photos/owner',
+			'path' => '/photos/owner/{username}',
 			'resource' => 'tidypics/photos/owner',
 		],
 		'collection:object:photos:friends' => [
@@ -140,7 +152,9 @@ return [
 		// 	'resource' => 'tidypics/photos/image/upload',
 		// ],
 		'collection:object:photos:download' => [
-			'path' => '/photos/download/{guid}/{disposition}',
+			//'path' => '/photos/download/{guid}/{disposition}',
+			//Seri 6/11/2020 - added '?' at the end of 'disposition' to make it optional 
+			'path' => '/photos/download/{guid}/{disposition?}',
 			'resource' => 'tidypics/photos/image/download',
 		],
 		'collection:object:photos:tagged' => [

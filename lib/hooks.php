@@ -51,13 +51,16 @@ function tidypics_entity_menu_setup(\Elgg\Hook $hook) {
 	$entity = $params['entity'];
 
 	if (elgg_in_context('photos')) {
-		$params = [
-			'name' => 'tidypic_edit',
-			'href' => elgg_get_site_url()."photos/edit/".$entity->guid,
-			'text' => elgg_echo('edit'),
-			'icon' => 'edit',
-		];
-		$return[] = ElggMenuItem::factory($params);
+		//Seri 8/12/2020 - show Edit menu only allowed users
+		if ($entity->canEdit()) {
+			$params = [
+				'name' => 'tidypic_edit',
+				'href' => elgg_get_site_url()."photos/edit/".$entity->guid,
+				'text' => elgg_echo('edit'),
+				'icon' => 'edit',
+			];
+			$return[] = ElggMenuItem::factory($params);
+		}
 	}
 
 	if ($entity instanceof TidypicsImage) {

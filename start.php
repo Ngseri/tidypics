@@ -19,6 +19,13 @@ elgg_register_event_handler('init', 'system', 'tidypics_init');
  * Tidypics plugin initialization
  */
 function tidypics_init() {
+
+	//Seri 6/10/2020 - register JS/CSS files after registering in tidypics/elgg-plugin.php
+	elgg_register_external_file('js', 'plupload-js', elgg_get_simplecache_url('tidypics/js/plupload/plupload.full.min.js'));
+	elgg_register_external_file('js', 'jquery-plupload', elgg_get_simplecache_url('tidypics/js/plupload/jquery.ui.plupload/jquery.ui.plupload.min.js'));
+	elgg_register_external_file('css', 'plupload-css', elgg_get_simplecache_url('tidypics/css/plupload/css/jquery.ui.plupload.css'));
+	elgg_register_external_file('css', 'jqueryui-theme', elgg_get_simplecache_url('tidypics/css/jqueryui-theme.css'));
+
 	// Register an ajax view that allows selection of album to upload images to
 	elgg_register_ajax_view('photos/selectalbum');
 

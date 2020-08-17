@@ -1,14 +1,20 @@
 define(function(require) {
 	var elgg = require("elgg");
 	var $ = require("jquery");
+	var lightbox = require('elgg/lightbox');
 
 	function init() {
+		//Seri 8/10/2020 - commented this code block bc elgg-lightbox-photo class
+		//can do the work
+		/*
 		if ($(".tidypics-lightbox").length) {
 			$(".tidypics-lightbox").colorbox({
 				photo:true,
 				maxWidth:'95%',
 				maxHeight:'95%'
 			});
+
+
 			$("#cboxOverlay").css("z-index", "10100");
 			$("#colorbox").css("z-index", "10101");
 		}
@@ -21,15 +27,18 @@ define(function(require) {
 					$(this).colorbox.resize();
 				}
 			});
+
 			$("#cboxOverlay").css("z-index", "10100");
 			$("#colorbox").css("z-index", "10101");
 		}
 
 		if ($(".tidypics-selectalbum-lightbox").length) {
 			$(".tidypics-selectalbum-lightbox").colorbox();
+
 			$("#cboxOverlay").css("z-index", "10100");
 			$("#colorbox").css("z-index", "10101");
 		}
+		*/
 
 		if ($(".tidypics-slideshow-lightbox").length) {
 			$(".tidypics-slideshow-lightbox").colorbox({
@@ -40,6 +49,7 @@ define(function(require) {
 				title: false,
 				arrowKey: false
 			});
+
 			$("#cboxOverlay").css("z-index", "10100");
 			$("#colorbox").css("z-index", "10101");
 		}

@@ -48,13 +48,19 @@ if ($watermark_text) {
 	$body .= elgg_view_entity_icon($image, 'large', [
 		'href' => false,
 		'img_class' => 'tidypics-photo',
-		'link_class' => 'tidypics-lightbox',
+		//Seri 8/10/2020 - replace tidypics-lightbox with elgg-lightbox-photo
+		//to replace colorbox
+		//'link_class' => 'tidypics-lightbox',
+		'link_class' => 'elgg-lightbox-photo mll',
 	]);
 } else {
 	$body .= elgg_view_entity_icon($image, 'large', [
 		'href' => $image->getIconURL('master'),
 		'img_class' => 'tidypics-photo',
-		'link_class' => 'tidypics-lightbox',
+		//Seri 8/10/2020 - replace tidypics-lightbox with elgg-lightbox-photo
+		//to replace colorbox
+		//'link_class' => 'tidypics-lightbox',
+		'link_class' => 'elgg-lightbox-photo mll',
 	]);
 }
 $body .= elgg_view('photos/tagging/tags', $vars);

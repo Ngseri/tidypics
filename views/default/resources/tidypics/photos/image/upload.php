@@ -49,11 +49,13 @@ if ($uploader == 'basic') {
 	$content = elgg_view_form('photos/basic_upload', $form_vars, $body_vars);
 } else {
 	// Load the JavaScript and CSS libs
-	elgg_require_js(elgg_get_simplecache_url('tidypics/js/plupload/plupload.full.min.js'));
-	elgg_require_js(elgg_get_simplecache_url('tidypics/js/plupload/jquery.ui.plupload/jquery.ui.plupload.min.js'));
 	elgg_require_js(elgg_get_simplecache_url('tidypics/js/plupload/i18n/' . tidypics_get_plugload_language() . '.js'));
-	elgg_require_css('tidypics/css/jqueryui-theme.css');
-	elgg_require_css('tidypics/css/plupload/css/jquery.ui.plupload.css');
+
+	//Seri 8/11/2020 - replaced elgg_require_{css,js} with elgg_load_external_file
+	elgg_load_external_file('js', 'plupload-js');
+	elgg_load_external_file('js', 'jquery-plupload');
+	elgg_load_external_file('css', 'jqueryui-theme');
+	elgg_load_external_file('css', 'plupload-css');
 
 	elgg_require_js('tidypics/uploading');
 	$content = elgg_view('forms/photos/ajax_upload', ['entity' => $album]);

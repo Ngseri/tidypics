@@ -62,7 +62,9 @@ if (elgg_get_plugin_setting('download_link', 'tidypics')) {
 	// add download button to title menu
 	elgg_register_menu_item('title', [
 		'name' => 'download',
-		'href' => "photos/download/$photo_guid",
+		//Seri 8/12/2020 - used $photo->getDownloadURL() instead
+		//'href' => "photos/download/$photo_guid",
+		'href' => $photo->getDownloadURL(),
 		'text' => elgg_echo('image:download'),
 		'link_class' => 'elgg-button elgg-button-action',
 	]);
